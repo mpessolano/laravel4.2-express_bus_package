@@ -10,84 +10,16 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
-/* Ruta original
+/*
 Route::get('/', function()
 {
 	return View::make('hello');
 });
 */
 
-// Enlazar filtro con ruta
-Route::get('/', array(
-	'before' => 'cumpleanios',
-	function()
-	{
-		return View::make('hello');
-	}
-));
-
-Route::get('holamundo/pagina1', function() 
-{
-	return '¡Hola mundo!';
-});
-
-Route::get('inicio', function()
-{
-	return '<html><head><title>Bienvenido al portal</title></head>
-		    <body bgcolor="cyan"><center><h1><hr color="white">Portal de Turismo</h1><hr color="white"><br>Bienvenido a la pagina</center></body></html>';
-});
-
-// Acepta todos los verbos HTTP
-Route::any('hola', function()
-{
-	return 'Hello World';
-});
-
-// Rutas con parametros
-Route::get('user/{id}', function($id)
-{
-	return 'User: '.$id;
-});
-
-// Rutas con parametros opcionales
-Route::get('user/{name?}', function($name = null)
-{
-	return $name;
-});
-
-// Rutas con parametro por defecto
-Route::get('user/{name?}', function($name = 'John')
-{
-	return $name;
-});
-
-// Rutas con expresiones regulares
-Route::get('usuario/{name}', function($name)
-{
-	return $name;
-})
-->where('name', '[A-Za-z]+');
-
-Route::get('usuario2/{id}', function($id)
-{
-	return $id;
-})
-->where('id', '[0-9]+');
-
-// Mostramos un campo de texto en un formulario y enviamos la informacion
-Route::get('registro', function()
-{
-	echo Form::open(array('url' => 'nombre', 'method' => 'post'));
-	echo Form::label('nombre', 'Tu nombre: ');
-	echo Form::text('nom');
-	echo Form::submit('Enviar');
-	echo Form::close();
-});
-
-// Recibimos la informacion del formulario y la mostramos
-Route::post('nombre', function()
-{
-	$nombre = Input::get('nom');
-	return 'Tu nombre es: '.$nombre;
-});
+// Llamar al controlador y accion mostrar index
+Route::get('/', 'EjemploControlador@mostrarIndex');
+// Llamar al controlador y accion mostrar mensaje
+Route::get('mensaje', 'EjemploControlador@mostrarMensaje');
+// Llamar al controlador y accion mostrar nombre
+Route::get('nombre/{nombre}', 'EjemploControlador@mostrarNombre');
