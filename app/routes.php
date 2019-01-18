@@ -11,12 +11,23 @@
 |
 */
 
+/* Ruta original
 Route::get('/', function()
 {
 	return View::make('hello');
 });
+*/
 
-Route::get('holamundo', function() 
+// Enlazar filtro con ruta
+Route::get('/', array(
+	'before' => 'cumpleanios',
+	function()
+	{
+		return View::make('hello');
+	}
+));
+
+Route::get('holamundo/pagina1', function() 
 {
 	return '¡Hola mundo!';
 });

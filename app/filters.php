@@ -88,3 +88,12 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+// Ejemplo de filtro
+Route::filter('cumpleanios', function()
+{
+	if (date('d/m') == '29/12') 
+	{
+		return 'Feliz cumple';
+	}
+});
