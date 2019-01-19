@@ -11,17 +11,9 @@
 |
 */
 
-Route::get('hola', function()
-{
-	return View::make('hola');
-});
-
-// Llamar al controlador y accion mostrar index
-Route::get('/', 'EjemploControlador@mostrarIndex');
-// Llamar al controlador y accion mostrar mensaje
-Route::get('mensaje', 'EjemploControlador@mostrarMensaje');
-// Llamar al controlador y accion mostrar nombre
-Route::get('nombre/{nombre}', 'EjemploControlador@mostrarNombre');
-
 // Llamamos al controlador RESTful esto enrutara a todos los metodos a la vez
-Route::controller('usuarios', 'UsuariosController');
+
+Route::get('/', function()
+{
+	return View::make('login');
+});
