@@ -10,18 +10,11 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-/*
-Route::get('/', function()
+
+Route::get('hola', function()
 {
-	return View::make('hello');
+	return View::make('hola');
 });
-*/
-/*
-Route::get('mivista', function()
-{
-	return View::make('vista1');
-});
-*/
 
 // Llamar al controlador y accion mostrar index
 Route::get('/', 'EjemploControlador@mostrarIndex');
