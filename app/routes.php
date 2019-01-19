@@ -16,6 +16,12 @@ Route::get('/', function()
 	return View::make('hello');
 });
 */
+/*
+Route::get('mivista', function()
+{
+	return View::make('vista1');
+});
+*/
 
 // Llamar al controlador y accion mostrar index
 Route::get('/', 'EjemploControlador@mostrarIndex');

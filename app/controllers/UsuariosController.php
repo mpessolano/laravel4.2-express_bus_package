@@ -34,4 +34,16 @@ class UsuariosController extends BaseController
 		return 'Aqui podemos mostrar el perfil del usuario: ';
 	}
 
+	public function getVista1()
+	{
+		//return View::make('vista1')->with('nombre', 'Marianna');
+		// Redireccionar a la vista 2
+		return Redirect::to('usuarios/vista2')->with('mensaje', 'error al acceder');
+	}
+
+	public function getVista2()
+	{
+		return View::make('vista2', array('nombre'=>'Marianna', 'apellido'=>'Pessolano', 'telefono'=>'78451257'));
+	}
+
 }
