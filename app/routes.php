@@ -18,7 +18,24 @@ Route::get('/', function()
 	return View::make('login');
 });
 
+// Login
 Route::post('login', 'UserLogin@user');
+
+// Logout
+Route::get('logout', function()
+{
+	Auth::logout();
+	return Redirect::to('/');
+});
+
+// Ruta de administración
+Route::get('admin', array('before' => 'auth', function()
+{
+	return View::make('package.index');
+}));
+
+// Rutas del sistema
+Route::controller('package', 'PackageController');
 
 Route::get('registrar', function()
 {

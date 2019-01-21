@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration {
 			$table->string('username')->unique();
 			$table->boolean('level');
 			$table->string('password');
+			$table->string('remember_token', 100)->nullable();
 			$table->timestamps();
 		});
 	}
