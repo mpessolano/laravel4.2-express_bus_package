@@ -20,36 +20,29 @@ Route::get('/', function()
 
 Route::get('creartabla', function()
 {
-	Schema::create('users', function($tabla)
+	Schema::create('products', function($tabla)
 	{
 		$tabla->increments('id');
-		$tabla->string('name');
-		$tabla->string('last_name');
-		$tabla->string('email')->unique();
-		$tabla->string('address');
-		$tabla->integer('phone');
-		$tabla->string('username')->unique();
-		$tabla->boolean('level');
-		$tabla->string('password');
+		$tabla->string('nombre');
+		$tabla->string('descripcion');
+		$tabla->string('cantidad');
+		$tabla->string('precio');
 		$tabla->timestamps();
 	});
 
-	return 'La tabla fue creada con exito';
+	return 'Tabla products creada';
 });
 
 Route::get('registrar', function()
 {
-	$user = new User;
-	$user->name = "Raúl";
-	$user->last_name = "Contreras";
-	$user->email = "raulito21@test.com";
-	$user->address = "Calle 9 de julio #244";
-	$user->phone = 52224799;
-	$user->username = "ra21";
-	$user->level = 0;
-	$user->password = Hash::make('hola');
-	// Guardamos
-	$user->save();
+	$producto = new Product;
+	$producto->nombre = "Smartphone";
+	$producto->descripcion = "Samsung Galaxy s4";
+	$producto->cantidad = "50";
+	$producto->precio = "500USD";
 
-	return 'El usuario fue agregado.';
+	// Guardamos
+	$producto->save();
+
+	return 'El producto fue agregado.';
 });
