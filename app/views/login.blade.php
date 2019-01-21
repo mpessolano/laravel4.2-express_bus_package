@@ -14,13 +14,13 @@
                 <img src="{{ asset('img/logo.png') }}" alt="">
             </div>
             <div id="loginbox">            
-                <form id="loginform" action="index.html">
+                <form action="login" method="post">
     				<p>Introduzca usuario y contraseña para continuar.</p>
                     <div class="input-group input-sm">
-                        <span class="input-group-addon"><i class="fa fa-user"></i></span><input class="form-control" id="username" placeholder="Usuario" type="text">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span><input class="form-control" id="username" placeholder="Usuario" type="text" name="username">
                     </div>
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-lock"></i></span><input class="form-control" id="password" placeholder="Contraseña" type="password">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span><input class="form-control" id="password" placeholder="Contraseña" type="password" name="password">
                     </div>
                     <div class="form-actions clearfix">                      
  <input class="btn btn-block btn-primary btn-default" value="Acceder" type="submit">
