@@ -36,13 +36,45 @@ Route::get('creartabla', function()
 Route::get('registrar', function()
 {
 	$producto = new Product;
-	$producto->nombre = "Smartphone";
-	$producto->descripcion = "Samsung Galaxy s4";
-	$producto->cantidad = "50";
-	$producto->precio = "500USD";
+	$producto->nombre = "Smart TV";
+	$producto->descripcion = "Samsung Smart TV";
+	$producto->cantidad = "70";
+	$producto->precio = "650USD";
 
 	// Guardamos
 	$producto->save();
 
 	return 'El producto fue agregado.';
+});
+
+// Buscar producto
+Route::get('buscar', function()
+{
+	// Buscar por ID del producto
+	//$producto = Product::find(1);
+	//return 'El nombre del producto es: '.$producto->nombre;
+
+	$producto = Product::where('nombre', '=', 'Smartphone')->get(); // Devuelve un array
+
+	return 'La cantidad de productos es: '.$producto[0]['cantidad'];
+});
+
+// Actualizar producto
+Route::get('actualizar', function()
+{
+	$producto = Product::find(2);
+	$producto->cantidad = "30";
+	$producto->precio = "230USD";
+	$producto->save();
+
+	return 'El producto fue actualizado';
+});
+
+// Eliminar un producto
+Route::get('eliminar', function()
+{
+	$producto = Product::find(3);
+	$producto->delete();
+
+	return 'El producto fue eliminado';
 });
