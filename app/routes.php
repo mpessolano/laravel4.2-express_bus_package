@@ -36,3 +36,20 @@ Route::get('creartabla', function()
 
 	return 'La tabla fue creada con exito';
 });
+
+Route::get('registrar', function()
+{
+	$user = new User;
+	$user->name = "Raúl";
+	$user->last_name = "Contreras";
+	$user->email = "raulito21@test.com";
+	$user->address = "Calle 9 de julio #244";
+	$user->phone = 52224799;
+	$user->username = "ra21";
+	$user->level = 0;
+	$user->password = Hash::make('hola');
+	// Guardamos
+	$user->save();
+
+	return 'El usuario fue agregado.';
+});
