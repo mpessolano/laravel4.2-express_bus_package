@@ -1,3 +1,5 @@
+@if (Auth::check())
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -18,14 +20,14 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-  </head>
+</head>
 
   <!--[if lt IE 7 ]> <body class="ie ie6"> <![endif]-->
   <!--[if IE 7 ]> <body class="ie ie7 "> <![endif]-->
   <!--[if IE 8 ]> <body class="ie ie8 "> <![endif]-->
   <!--[if IE 9 ]> <body class="ie ie9 "> <![endif]-->
   <!--[if (gt IE 9)|!(IE)]><!--> 
-  <body class=""> 
+<body class=""> 
   <!--<![endif]-->
     
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -44,7 +46,7 @@
                    
                     <li id="fat-menu" class="dropdown">
                         <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-user"></i> Ariel Max
+                            <i class="icon-user"></i> {{ Auth::user()->username }}
                             <i class="icon-caret-down"></i>
                         </a>
 
@@ -589,7 +591,7 @@
         });
     </script>
     
-  </body>
+</body>
 </html>
 
-
+@endif

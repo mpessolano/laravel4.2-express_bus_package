@@ -34,6 +34,14 @@ Route::get('admin', array('before' => 'auth', function()
 	return View::make('dashboard.index');
 }));
 
+/*
+// Comprobar validación Auth::check en la vista dashboard.index
+Route::get('admin2', function()
+{
+	return View::make('dashboard.index');
+});
+*/
+
 // Rutas del sistema
 Route::controller('package', 'PackageController');
 
