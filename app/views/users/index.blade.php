@@ -9,9 +9,9 @@
 	<meta name="author" content="ArielMax">
 
 	<link rel="stylesheet" type="text/css" href="lib/bootstrap3/dist/css/bootstrap.css">
-	<link rel="stylesheet" href="lib/FontAwesome/css/font-awesome.css">
+	<link rel="stylesheet" href="font-awesome/css/font-awesome.css">
 	<script src="lib/jquery-1.7.2.min.js" type="text/javascript"></script>
-	<script src="javascripts/site.js" type="text/javascript"></script>
+	<script src="js/site.js" type="text/javascript"></script>
 	
 <script type="text/javascript" src="lib/DataTables-1.9.4/media/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="lib/DataTables-1.9.4/media/js/jquery.dataTables.bootstrap.js"></script>
@@ -146,7 +146,7 @@
 
 			<ul class="nav nav-tabs hidden-xs">
 				<li class="active"><a href="index.html"><i class="icon-dashboard"></i> <span>Dashboard</span></a></li>
-				<li ><a href="reports.html" ><i class="icon-bar-chart"></i> <span>Reports</span></a></li>
+				<li ><a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus-square"></i> <span>Nuevo</span></a></li>
 				<li ><a href="components.html" ><i class="icon-cogs"></i> <span>Components</span></a></li>
 				<li ><a href="pricing.html"><i class="icon-magic"></i> <span>Pricing</span></a></li>
 				<li class="dropdown">
@@ -212,9 +212,92 @@
 	</div>
 	
 	<div class="content">
+
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel"><i class="fa fa-plus-square"></i> Nuevo Usario</h4>
+					</div>
+					<form role="form" action="users/create" method="post">
+					<div class="modal-body">
+
+						
+							<div class="form-group">
+								<label for="exampleInputEmail1">Nombre</label>
+								<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Ingrese el nombre" name="name">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Apellido</label>
+								<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Ingrese apellido" name="last_name">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Email</label>
+								<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Ingrese Email" name="email">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Dirección</label>
+								<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Ingrese Dirección" name="address">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Teléfono</label>
+								<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Ingrese teléfono" name="phone">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Nombre de Usuario</label>
+								<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Ingrese nombre de usuario" name="username">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputPassword1">Contraseña</label>
+								<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña" name="password">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputPassword1">Repita la Contraseña</label>
+								<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña" name="password2">
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputPassword1">Nivel de Usuario</label>
+							</div>
+							<div class="radio">
+								<label>
+									<input type="radio" name="level" id="exampleInputPassword1" value="1" checked>
+									Administrador
+								</label>
+							</div>
+							<div class="radio">
+								<label>
+									<input type="radio" name="level" id="exampleInputPassword2" value="0">
+									Usuario
+								</label>
+							</div>
+						
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						<button type="submit" class="btn btn-inverse">Guardar</button>
+					</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- End Modal -->
 		
 		<div class="row">
 			<div class="col-sm-12">
+
+				<?php $status = Session::get('status'); ?>
+
+				@if ($status == 'ok_create')
+				<div class="alert alert-success fade in">
+					<button class="close" data-dismiss="alert" type="button">×</button>
+					<i class="fa fa-check-square"></i> El usuario fue creado con exito
+				</div>
+				@endif
+
 				<h2 style="margin-bottom: -1em;">Usuarios</h2>
 
 				<!-- $users es la variable enviada de controles with()-->
