@@ -153,7 +153,7 @@
             <li class=" "><a rel="tooltip" data-placement="right" data-original-title="Pricing" href="pricing.html"><i class="icon-money"></i> <span class="caption">Precios</span></a></li>
             
             
-            <li class=" "><a rel="tooltip" data-placement="right" data-original-title="Media" href="media.html"><i class="icon-group"></i> <span class="caption">Usuarios</span></a></li>
+            <li class=" "><a rel="tooltip" data-placement="right" data-original-title="Media" href="{{ URL::to('users'); }}"><i class="icon-group"></i> <span class="caption">Usuarios</span></a></li>
             
             
             <li class=" "><a rel="tooltip" data-placement="right" data-original-title="Blog" href="blog.html"><i class="icon-envelope"></i> <span class="caption">Mensajes</span></a></li>
