@@ -31,7 +31,7 @@ Route::get('logout', function()
 // Ruta de administración
 Route::get('admin', array('before' => 'auth', function()
 {
-	return View::make('package.index');
+	return View::make('dashboard.index');
 }));
 
 // Rutas del sistema
