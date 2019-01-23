@@ -45,6 +45,7 @@ Route::get('admin2', function()
 // Rutas del sistema
 Route::controller('package', 'PackageController');
 Route::controller('users', 'UsersController');
+Route::controller('user/getuser', 'GetUserController'); // Peticion Ajax
 
 Route::get('registrar', function()
 {

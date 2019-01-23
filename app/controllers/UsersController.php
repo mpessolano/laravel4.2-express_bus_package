@@ -77,4 +77,22 @@ class UsersController extends BaseController
 		return Redirect::to('users')->with('status', 'ok_delete');
 	}
 
+	// Metodo para actualizar datos del usuario
+	public function postUpdate()
+	{
+		$user_id = Input::get('user_id');
+		$user = User::find($user_id);
+
+		$user->name      = Input::get('name_edit');
+		$user->last_name = Input::get('last_name_edit');
+		$user->email     = Input::get('email_edit');
+		$user->address   = Input::get('address_edit');
+		$user->phone     = Input::get('phone_edit');
+		$user->level     = Input::get('level');
+		$user->username  = Input::get('username_edit');
+
+		$user->save();
+		return Redirect::to('users')->with('status', 'ok_update');
+	}
+
 }

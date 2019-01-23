@@ -296,6 +296,72 @@
 			</div>
 		</div>
 		<!-- End Modal -->
+
+		<!-- Modal edit -->
+		<div class="modal fade" id="Edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel"><i class="fa fa-pencil"></i> Editar Usuario <span id="load"><img src="{{ asset('img/loading-icons/loading1.gif') }}"> Cargando...</span></h4>
+					</div>
+					<form role="form" action="users/update" method="post" id="formEdit">
+					<div class="modal-body">
+						
+							<div class="form-group">
+								<label for="exampleInputEmail1">Nombre</label>
+								<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Ingrese el nombre" name="name_edit">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Apellido</label>
+								<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Ingrese apellido" name="last_name_edit">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Email</label>
+								<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Ingrese Email" name="email_edit">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Dirección</label>
+								<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Ingrese Dirección" name="address_edit">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Teléfono</label>
+								<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Ingrese teléfono" name="phone_edit">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Nombre de Usuario</label>
+								<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Ingrese nombre de usuario" name="username_edit">
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputPassword1">Nivel de Usuario</label>
+							</div>
+							<div class="radio">
+								<label>
+									<input type="radio" name="level" id="level_ad" value="1">
+									Administrador
+								</label>
+							</div>
+							<div class="radio">
+								<label>
+									<input type="radio" name="level" id="level_us" value="0">
+									Usuario
+								</label>
+							</div>
+
+							<input type="hidden" name="user_id">
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						<button type="submit" class="btn btn-inverse">Guardar</button>
+					</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- End Modal -->
+		<!-- End Modal -->
 		
 		<div class="row">
 			<div class="col-sm-12">
@@ -312,6 +378,12 @@
 				<div class="alert alert-success fade in">
 					<button class="close" data-dismiss="alert" type="button">x</button>
 					<i class="fa fa-check-square"></i> El usuario fue eliminado con exito
+				</div>
+				@endif
+				@if ($status == 'ok_update')
+				<div class="alert alert-info fade in">
+					<button class="close" data-dismiss="alert" type="button">x</button>
+					<i class="fa fa-check-square"></i> El usuario fue actualizado con exito
 				</div>
 				@endif
 
@@ -342,7 +414,7 @@
 							<td>{{ $user->email }}</td>
 							<td>{{ $user->created_at }}</td>
 							<td>{{ $user->level }}</td>
-							<td><span class="label label-info">Editar</span> 
+							<td><span class="label label-info">{{ HTML::link('#Edit', 'Editar', array('class' => 'edit', 'id' => $user->id, 'data-toggle' => 'modal', 'title' => $user->name, 'style'=>'color:#fff')) }}</span> 
 								<span class="label label-success">Enviar mensaje</span> 
 								<span class="label label-danger">{{ HTML::link('#', 'Borrar', array('class' => 'delete', 'title' => $user->id, 'style' => 'color:#fff')) }}{{--<a href="users/delete/{{$user->id}}" style="color:#fff">Eliminar</a>--}}</span>
 							</td>
@@ -370,6 +442,52 @@
 	</div>
 	
 	<script src="lib/bootstrap3/dist/js/bootstrap.js"></script>
+
+	<input id="val" type="hidden" name="user" class="input-block-level" value="">
+
+<script>
+	$(document).ready(function(){
+
+		$('.edit').click(function(){
+
+			$('[name=user]').val($(this).attr('id'));
+
+			var faction = "<?php echo URL::to('user/getuser/data'); ?>";
+
+			var fdata = $('#val').serialize();
+
+			$('#load').show();
+
+			$.post(faction, fdata, function(json){
+				if(json.success){
+					$('#formEdit input[name="user_id"]').val(json.id);
+					$('#formEdit input[name="name_edit"]').val(json.name);
+					$('#formEdit input[name="last_name_edit"]').val(json.last_name);
+					$('#formEdit input[name="email_edit"]').val(json.email);
+					$('#formEdit input[name="address_edit"]').val(json.address);
+					$('#formEdit input[name="phone_edit"]').val(json.phone);
+					$('#formEdit input[name="username_edit"]').val(json.username);
+
+					if(json.level == '1'){
+						$('#level_ad').prop('checked', 'true');
+					}
+					else{
+						$('#level_us').prop('checked', 'true');
+					}
+
+					$('#load').hide();
+				}
+				else{
+					$('#errorMessage').html(json.message);
+					$('#errorMessage').show();
+				}
+			});
+
+
+		});
+	});
+</script>
+
 	<script type="text/javascript">
 		$("[rel=tooltip]").tooltip({animation:false});
 		$(function() {
