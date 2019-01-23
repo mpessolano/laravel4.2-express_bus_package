@@ -40,6 +40,17 @@
 	});
 </script>
 
+<script>
+	$(document).ready(function(){
+		$('.delete').click(function(){
+			if(confirm("¿Está seguro de que desea eliminar?")){
+				var id = $(this).attr("title");
+				document.location.href='users/delete/'+id;
+			}
+		});
+	});
+</script>
+
 	<link rel="stylesheet" type="text/css" href="css/theme.css">
 
 
@@ -297,6 +308,12 @@
 					<i class="fa fa-check-square"></i> El usuario fue creado con exito
 				</div>
 				@endif
+				@if ($status == 'ok_delete')
+				<div class="alert alert-success fade in">
+					<button class="close" data-dismiss="alert" type="button">x</button>
+					<i class="fa fa-check-square"></i> El usuario fue eliminado con exito
+				</div>
+				@endif
 
 				<h2 style="margin-bottom: -1em;">Usuarios</h2>
 
@@ -327,7 +344,7 @@
 							<td>{{ $user->level }}</td>
 							<td><span class="label label-info">Editar</span> 
 								<span class="label label-success">Enviar mensaje</span> 
-								<span class="label label-danger">Eliminar</span>
+								<span class="label label-danger">{{ HTML::link('#', 'Borrar', array('class' => 'delete', 'title' => $user->id, 'style' => 'color:#fff')) }}{{--<a href="users/delete/{{$user->id}}" style="color:#fff">Eliminar</a>--}}</span>
 							</td>
 						</tr>  
 						@endforeach  			

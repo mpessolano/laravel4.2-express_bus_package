@@ -65,5 +65,16 @@ class UsersController extends BaseController
 		// Redirigimos a usuarios
 		return Redirect::to('users')->with('status', 'ok_create');
 	}
+	
+	// Eliminar usuarios
+	public function getDelete($user_id)
+	{
+		// Buscamos el usuario en la base de datos segun la id enviada
+		$user = User::find($user_id);
+		// Eliminamos y redirigimos
+		$user->delete();
+		
+		return Redirect::to('users')->with('status', 'ok_delete');
+	}
 
 }
