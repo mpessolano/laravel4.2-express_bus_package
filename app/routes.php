@@ -46,3 +46,16 @@ Route::get('/pdf', function()
 
 	return PDF::load($html, 'A4', 'portrait')->show();
 });
+
+// Usar librerias personalizadas en Laravel 4
+Route::get('hola', function()
+{
+	return Mensaje::men("Hola Marianna");
+});
+
+Route::controller('men', 'HolaController');
+
+Route::get('vista', function()
+{
+	return View::make('hola');
+});
