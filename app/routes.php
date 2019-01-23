@@ -59,3 +59,9 @@ Route::get('vista', function()
 {
 	return View::make('hola');
 });
+
+// Importar archivos php en Laravel 4
+Route::get('mensaje', function()
+{
+	return View::make('mensaje');
+});
