@@ -11,8 +11,6 @@
 |
 */
 
-// Llamamos al controlador RESTful esto enrutara a todos los metodos a la vez
-
 Route::get('/', function()
 {
 	return View::make('login');
@@ -34,37 +32,17 @@ Route::get('admin', array('before' => 'auth', function()
 	return View::make('dashboard.index');
 }));
 
-/*
-// Comprobar validación Auth::check en la vista dashboard.index
-Route::get('admin2', function()
-{
-	return View::make('dashboard.index');
-});
-*/
-
 // Rutas del sistema
 Route::controller('package', 'PackageController');
 Route::controller('users', 'UsersController');
 Route::controller('user/getuser', 'GetUserController'); // Peticion Ajax
 
-Route::get('registrar', function()
+Route::get('/pdf', function()
 {
-	$user = new User;
-	$user->name = "Maria";
-	$user->last_name = "Gonzales";
-	$user->email = "maria@gmail.com";
-	$user->address = "Calle 20 de mayo #100";
-	$user->phone = 5452100;
-	$user->username = "maria";
-	$user->level = 0;
-	$user->password = Hash::make('123');
+	$html =   '<html><body>'
+			. '<p>Put your html here, or generate it with your favourite '
+			. 'templating system.</p>'
+			. '</body></html>';
 
-	// Guardamos
-	$user->save();
-	return "El usuario fue agregado.";
+	return PDF::load($html, 'A4', 'portrait')->show();
 });
-
-Route::get('login2', array('before' => 'auth.basic', function()
-{
-	return View::make('hello');
-}));
